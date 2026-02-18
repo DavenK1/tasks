@@ -3,7 +3,7 @@
  * JUST the first and last number. If there are no elements, return
  * an empty array. If there is one element, the resulting list should
  * the number twice.
- */
+ **/
 export function bookEndList(numbers: number[]): number[] {
     return (numbers.length == 0 ? numbers : numbers.length == 1 ? [numbers[0],numbers[0]] : [numbers[0], numbers[numbers.length - 1]]);
 }
@@ -35,7 +35,7 @@ export function stringsToIntegers(numbers: string[]): number[] {
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
     return (amounts.map((num: string): number => (num.includes("$") ? (Number(num.slice(1)) ? Number(num.slice(1)) : 0 ): (Number(num) ? Number(num) : 0))));
-};
+}
 
 /**
  * Consume an array of messages and return a new list of the messages. However, any
@@ -43,8 +43,8 @@ export const removeDollars = (amounts: string[]): number[] => {
  * in question marks ("?").
  */
 export const shoutIfExclaiming = (messages: string[]): string[] => {
-    return messages.filter((m: string) : boolean => (m[m.length -1] !=   "?")).map((m: string) : string => (m.endsWith("!") ? m.toUpperCase() : m))
-};
+    return messages.filter((m: string) : boolean => (m[m.length -1] !=   "?")).map((m: string) : string => (m.endsWith("!") ? m.toUpperCase() : m));
+}
 
 /**
  * Consumes an array of words and returns the number of words that are LESS THAN
@@ -84,7 +84,8 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    let firstN = values.findIndex((num: number): boolean => num < 0)
-    firstN = (firstN > -1 ? firstN + 1: values.length)
-    return [...values.slice(0, firstN), values.slice(0, firstN === values.length ? values.length: firstN - 1).reduce((s: number, c: number): number => s + c, 0), ...values.slice(firstN)];;
+    let
+     firstN = values.findIndex((num: number): boolean => num < 0);
+    firstN = (firstN > -1 ? firstN + 1: values.length);
+    return [...values.slice(0, firstN), values.slice(0, firstN === values.length ? values.length: firstN - 1).reduce((s: number, c: number): number => s + c, 0), ...values.slice(firstN)];
 }
