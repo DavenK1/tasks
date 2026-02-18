@@ -84,8 +84,7 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    let
-     firstN = values.findIndex((num: number): boolean => num < 0);
-    firstN = (firstN > -1 ? firstN + 1: values.length);
-    return [...values.slice(0, firstN), values.slice(0, firstN === values.length ? values.length: firstN - 1).reduce((s: number, c: number): number => s + c, 0), ...values.slice(firstN)];
+    let firstN = values.findIndex((num: number): boolean => num < 0);
+    firstN = (firstN > -1 ? firstN + 1: values.length)
+    return [...values.slice(0, firstN), values.slice(0, firstN === values.length ? values.length: firstN - 1).reduce((s: number, c: number): number => s + c, 0), ...values.slice(firstN)]
 }
