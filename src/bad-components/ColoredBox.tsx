@@ -4,12 +4,15 @@ import { Button } from "react-bootstrap";
 export const COLORS = ["red", "blue", "green"];
 const DEFAULT_COLOR_INDEX = 0;
 
-function ChangeColor(): React.JSX.Element {
-    const [colorIndex, setColorIndex] = useState<number>(DEFAULT_COLOR_INDEX);
+function ChangeColor({
+    updColor,
+}: {
+    updColor: () => void;
+}): React.JSX.Element {
     return (
         <Button
             onClick={() => {
-                setColorIndex((1 + colorIndex) % COLORS.length);
+                updColor();
             }}
         >
             Next Color
@@ -17,14 +20,14 @@ function ChangeColor(): React.JSX.Element {
     );
 }
 
-function ColorPreview(): React.JSX.Element {
+function ColorPreview({ color }: { color: number }): React.JSX.Element {
     return (
         <div
             data-testid="colored-box"
             style={{
                 width: "50px",
                 height: "50px",
-                backgroundColor: COLORS[DEFAULT_COLOR_INDEX],
+                backgroundColor: COLORS[color],
                 display: "inline-block",
                 verticalAlign: "bottom",
                 marginLeft: "5px",
@@ -34,13 +37,18 @@ function ColorPreview(): React.JSX.Element {
 }
 
 export function ColoredBox(): React.JSX.Element {
+    const [color, setColor] = useState<number>(DEFAULT_COLOR_INDEX);
+
+    const updColor = () => {
+        setColor((color + 1) % COLORS.length);
+    };
     return (
         <div>
             <h3>Colored Box</h3>
             <span>The current color is: {COLORS[DEFAULT_COLOR_INDEX]}</span>
             <div>
-                <ChangeColor></ChangeColor>
-                <ColorPreview></ColorPreview>
+                <ChangeColor updColor={updColor}></ChangeColor>
+                <ColorPreview color={color}></ColorPreview>
             </div>
         </div>
     );
